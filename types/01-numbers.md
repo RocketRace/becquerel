@@ -11,10 +11,12 @@ non-integral numbers. Axes are represented by naturals. Most arithmetic operates
 Some operations extend their domain with special numeric values: `rank ⎉` operates on the integers 
 extended to include `infinity ∞`, and `group ⊔` operates on naturals extended to include `¯1`.
 
-To model these relationships, we introduce subtyping, singleton types, and union types.
+To model these relationships, we introduce subtyping (for numbers), singleton types, and union types.
 
-We first borrow the concept of a "numeric tower" from contemporary dynamic programming languages 
-and define the following subtyping relationships: 
+In a nutshell, subtyping allows for the $x: A$ to have multiple valid assignments for $A$ rather than just one. For example, if $A \le B$ ($A$ is a subtype of $B$), then whenever $x: A$, $x: B$ is also valid.
+
+Borrowing the concept of a "numeric tower" from contemporary dynamic programming languages, 
+we define the following subtyping relationships: 
 
 $$\vdash \text{Nat} \le \text{Int},\ \text{Int} \le \text{Number}$$
 
@@ -23,7 +25,9 @@ where $\text{Nat}$ is the type of non-negative integers, $\text{Int}$ is the typ
 Furthermore, we define singleton types $\text{Literal}(x)$ for each of these classes of number, such as $\text{Literal}(¯0.5)$:
 
 $$x: \text{Nat} \vdash \text{Literal}(x) \le \text{Nat}$$
+
 $$x: \text{Int} \vdash \text{Literal}(x) \le \text{Int}$$
+
 $$x: \text{Number} \vdash \text{Literal}(x) \le \text{Number}$$
 
 Note that $\text{Literal}$ as described is a $\Pi$ type. For implementation purposes, it may be necessary to restrict its domain to statically known constant values.
